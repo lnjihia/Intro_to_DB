@@ -3,13 +3,13 @@ CREATE DATABASE IF NOT EXISTS alx_book_store;
 USE alx_book_store;
 
 -- Create the Authors table
-CREATE TABLE AUTHORS (
+CREATE TABLE Authors (
     author_id INT AUTO_INCREMENT PRIMARY KEY,
     author_name VARCHAR(215) NOT NULL
 );
 
 -- Create the Books table
-CREATE TABLE BOOKS (
+CREATE TABLE Books (
     book_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(130) NOT NULL,
     author_id INT,
@@ -19,7 +19,7 @@ CREATE TABLE BOOKS (
 );
 
 -- Create the Customers table
-CREATE TABLE CUSTOMERS (
+CREATE TABLE Customers (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_name VARCHAR(215) NOT NULL,
     email VARCHAR(215) UNIQUE NOT NULL,
@@ -31,15 +31,15 @@ CREATE TABLE ORDERS (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT,
     order_date DATE NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES CUSTOMERS(customer_id) ON DELETE CASCADE
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id) ON DELETE CASCADE
 );
 
 -- Create the Order_Details table
-CREATE TABLE ORDER_DETAILS (
+CREATE TABLE Order_Details (
     orderdetailid INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT,
     book_id INT,
     quantity DOUBLE NOT NULL,
     FOREIGN KEY (order_id) REFERENCES ORDERS(order_id) ON DELETE CASCADE,
-    FOREIGN KEY (book_id) REFERENCES BOOKS(book_id) ON DELETE CASCADE
+    FOREIGN KEY (book_id) REFERENCES Books(book_id) ON DELETE CASCADE
 );
